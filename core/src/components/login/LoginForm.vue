@@ -66,6 +66,7 @@
 			<p class="groupbottom"
 			   :class="{shake: invalidPassword}">
 				<input type="password"
+					   class="password-with-toggle"
 					   name="password"
 					   id="password"
 					   ref="password"
@@ -75,6 +76,7 @@
 					   required>
 				<label for="password"
 					   class="infield">{{ t('Password') }}</label>
+				<a href="#" @click="togglePassword" class="toggle-password"><img :src="OC.imagePath('core', 'actions/toggle.svg')"/></a>
 			</p>
 
 			<div id="submit-wrapper">
@@ -186,6 +188,15 @@
 			}
 		},
 		methods: {
+			togglePassword () {
+				if(this.$refs.password.type === "password"){
+					this.$refs.password.type = "text"
+				}
+				else{
+					this.$refs.password.type = "password"
+				}
+				return false
+			},
 			updateUsername () {
 				this.$emit('update:username', this.user)
 			},
